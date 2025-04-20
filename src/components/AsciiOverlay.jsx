@@ -98,11 +98,11 @@ const VideoAsciiOverlay = () => {
   const finalAscii = fullAscii.map((line) => line.join("")).join("\n");
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black font-mono text-xs leading-none text-white">
+    <div className="relative flex justify-center w-full h-screen overflow-hidden bg-black font-mono text-xs leading-none text-white">
       {/* Video with responsive width and auto height */}
       <video
         ref={videoRef}
-        className="absolute top-0 w-full h-auto z-10"
+        className="absolute top-0 w-5/6 h-auto z-10"
         autoPlay
         muted
         loop
