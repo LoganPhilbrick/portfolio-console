@@ -9,7 +9,7 @@ const VideoAsciiOverlay = () => {
   const [ascii, setAscii] = useState("");
   const [videoRect, setVideoRect] = useState({ top: 0, left: 0, width: 0, height: 0 });
 
-  const charWidth = 9.6;
+  const charWidth = 9.1;
   const charHeight = 12;
 
   const getAsciiChar = (brightness) => {
@@ -75,7 +75,7 @@ const VideoAsciiOverlay = () => {
   // Generate screen-sized filler with darkest char
   const screenCols = Math.floor(window.innerWidth / charWidth);
   const screenRows = Math.floor(window.innerHeight / charHeight);
-  const darkChar = asciiChars[0];
+  const darkChar = asciiChars[5];
 
   let fullAscii = Array(screenRows)
     .fill(darkChar.repeat(screenCols))
@@ -98,18 +98,21 @@ const VideoAsciiOverlay = () => {
   const finalAscii = fullAscii.map((line) => line.join("")).join("\n");
 
   return (
-    <div className="absolute top-0 w-screen h-screen overflow-hidden bg-black text-xs leading-none text-white">
+    <div className="relative w-full h-screen overflow-hidden bg-black font-mono text-xs leading-none text-white">
+      {/* Video with responsive width and auto height */}
       <video
         ref={videoRef}
-        className="absolute top-0 left-0 w-full h-full object-cover z-10"
+        className="absolute top-0 w-full h-auto z-10"
         autoPlay
         muted
         loop
-        src={video} // Replace with your actual video
+        src={video} // Replace with actual video source
       />
 
+      {/* Hidden canvas for pixel sampling */}
       <canvas ref={canvasRef} className="hidden" />
 
+      {/* ASCII overlay */}
       <div className="absolute inset-0 z-20 whitespace-pre pointer-events-none font-[glyphs] bg-black bg-opacity-60">{finalAscii}</div>
     </div>
   );
