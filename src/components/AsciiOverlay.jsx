@@ -1,4 +1,4 @@
-import video from "../assets/footage.mp4";
+import video from "../assets/initbl.mp4";
 import React, { useEffect, useRef, useState } from "react";
 
 const asciiChars = "58741230"; // darkest to lightest
@@ -102,7 +102,7 @@ const VideoAsciiOverlay = () => {
       {/* Video with responsive width and auto height */}
       <video
         ref={videoRef}
-        className="absolute top-0 w-5/6 h-auto z-10"
+        className="absolute top-0 w-full h-full object-cover z-10"
         autoPlay
         muted
         loop
@@ -113,7 +113,7 @@ const VideoAsciiOverlay = () => {
       <canvas ref={canvasRef} className="hidden" />
 
       {/* ASCII overlay */}
-      <div className="absolute inset-0 z-20 whitespace-pre pointer-events-none font-[glyphs] bg-black bg-opacity-60">{finalAscii}</div>
+      {/* <div className="absolute inset-0 z-20 whitespace-pre pointer-events-none font-[glyphs] bg-black bg-opacity-60">{finalAscii}</div> */}
     </div>
   );
 };
